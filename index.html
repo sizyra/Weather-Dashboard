@@ -5,35 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
 
+    <link rel="stylesheet" href='style.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
     <div class='container'>
         <div class='row bg-dark mt-2 mb-2'>
-            <h1 class='text-white'>Weather Dashboard</h1>
+            <h1 class='text-white p-3'>Weather Dashboard</h1>
         </div>
 
         <div class='row'>
             <div class='col-4 bg-light'>
                 <h4>Search for a city:</h4>
-                <div class='form-inline'>
-                    <input type='text' placeholder='Type the city name here'>
-                    <button type='submit' class='fas fa-search'></button>
-                </div>
-                <ul class='list-group' id='previous-cities'>
-                    <li class='list-group-item'></li>
-                </ul>
+                <form id='city-search-form' class='form-inline'>
+                    <input id='city-searched' type='text' placeholder='City Name, State Name'>
+                </form>
+                <ul class='list-group' id='search-history'></ul>
             </div>
 
             <div class='col'>
                 <div class='row border rounded border-secondary'>
-                    <ul style='list-style:none;padding-left:0px'>
-                        <lh id='city-date' class='h2'>City/Date</lh>
-                        <li>Temperature: <span id='temperature'></span></li>
-                        <li>Humidity: <span id='humidity'></span></li>
-                        <li>Wind Speed: <span id='wind-speed'></span></li>
-                        <li>UV Index: <span id='temp'></span></li>
-                    </ul>
+                    <div class='col'>
+                        <ul style='list-style:none;padding-left:0px'>
+                            <lh class='h2'><span id='city'></span></i></lh>
+                            <li>Temperature: <span id='temp'></span></li>
+                            <li>Humidity: <span id='humidity'></span></li>
+                            <li>Wind Speed: <span id='wind-speed'></span></li>
+                            <li>UV Index: <span id='uv-index'></span></li>
+                            <li style='visibility:hidden' id='city-latitude'></li>
+                            <li style='visibility:hidden' id='city-longitude'></li>
+                        </ul>
+                    </div>
+
+                    <div class='col'>
+                        <img id='weather-icon' src=''>
+                    </div>
                 </div>
                 <div class='row'>
                     <h3 class='m-3'>5-Day Forecast: </h3>
@@ -41,41 +47,41 @@
                         <div class="card w-200">
                           <div class="card-body">
                             <h5 class="card-title" id='5-day-date-1'>Date</h5>
-                            <i class='fas fa-cloud-rain' id='weather-icon-1'></i>
+                            <img id='weather-icon-1'></i>
                             <p class="card-text" id='5-day-temp-1'>80 °F</p>
                             <p class="card-text" id='5-day-humidity-1'>0%</p>
                           </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title" id='5-day-date-1'>Date</h5>
-                              <i class='fas fa-cloud-rain' id='weather-icon-1'></i>
-                              <p class="card-text" id='5-day-temp-1'>80 °F</p>
-                              <p class="card-text" id='5-day-humidity-1'>0%</p>
+                              <h5 class="card-title" id='5-day-date-2'>Date</h5>
+                              <img id='weather-icon-2'></i>
+                              <p class="card-text" id='5-day-temp-2'>80 °F</p>
+                              <p class="card-text" id='5-day-humidity-2'>0%</p>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title" id='5-day-date-1'>Date</h5>
-                              <i class='fas fa-cloud-rain' id='weather-icon-1'></i>
-                              <p class="card-text" id='5-day-temp-1'>80 °F</p>
-                              <p class="card-text" id='5-day-humidity-1'>0%</p>
+                              <h5 class="card-title" id='5-day-date-3'>Date</h5>
+                              <img id='weather-icon-3'></i>
+                              <p class="card-text" id='5-day-temp-3'>80 °F</p>
+                              <p class="card-text" id='5-day-humidity-3'>0%</p>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title" id='5-day-date-1'>Date</h5>
-                              <i class='fas fa-cloud-rain' id='weather-icon-1'></i>
-                              <p class="card-text" id='5-day-temp-1'>80 °F</p>
-                              <p class="card-text" id='5-day-humidity-1'>0%</p>
+                              <h5 class="card-title" id='5-day-date-4'>Date</h5>
+                              <img id='weather-icon-4'></i>
+                              <p class="card-text" id='5-day-temp-4'>80 °F</p>
+                              <p class="card-text" id='5-day-humidity-4'>0%</p>
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title" id='5-day-date-1'>Date</h5>
-                              <i class='fas fa-cloud-rain' id='weather-icon-1'></i>
-                              <p class="card-text" id='5-day-temp-1'>80 °F</p>
-                              <p class="card-text" id='5-day-humidity-1'>0%</p>
+                              <h5 class="card-title" id='5-day-date-5'>Date</h5>
+                              <img id='weather-icon-5'></i>
+                              <p class="card-text" id='5-day-temp-5'>80 °F</p>
+                              <p class="card-text" id='5-day-humidity-5'>0%</p>
                             </div>
                         </div>
                     </div>
@@ -86,12 +92,127 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/fa51f14f98.js" crossorigin="anonymous"></script>
-    <script src='script.js'>
+    <script>
         
+        var citySearchForm = $('#city-search-form');
+        var citySearched = $('#city-searched');
+        var searchHistory = $('#search-history');
+
+        var city = $('#city');
+        var icon = $('#weather-icon');
+        var temp = $('#temp');
+        var uvIndex = $('#uv-index');
+        var humidity = $('#humidity');
+        var windSpeed = $('#wind-speed');
+
+        var fiveDateOne = $('#5-day-date-1');
+        var weatherIconOne = $('#weather-icon-1');
+        var fiveTempOne = $('#5-day-temp-1');
+        var fiveHumOne = $('#5-day-humidity-1');
+
+        var fiveDateTwo = $('#5-day-date-2');
+        var weatherIconTwo = $('#weather-icon-2');
+        var fiveTempTwo = $('#5-day-temp-2');
+        var fiveHumTwo = $('#5-day-humidity-2');
+
+        var fiveDateThree = $('#5-day-date-3');
+        var weatherIconThree = $('#weather-icon-3');
+        var fiveTempThree = $('#5-day-temp-3');
+        var fiveHumThree = $('#5-day-humidity-3');
+
+        var fiveDateFour = $('#5-day-date-4');
+        var weatherIconFour = $('#weather-icon-4');
+        var fiveTempFour = $('#5-day-temp-4');
+        var fiveHumFour = $('#5-day-humidity-4');
+
+        var fiveDateFive = $('#5-day-date-5');
+        var weatherIconFive = $('#weather-icon-5');
+        var fiveTempFive = $('#5-day-temp-5');
+        var fiveHumFive = $('#5-day-humidity-5');
+
+
+
+        $('form').on("submit", function(event) {
+            event.preventDefault();
+
+            var citySearchVal = citySearched.val();
+            var cityNoSpace = citySearchVal.replace(/ /g, '');
+
+            var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityNoSpace + '&units=imperial&appid=e779588a0591b7492fc753e8f6d82879';
+
+            console.log(queryURL);
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            
+                .then(function(response) {
+                    console.log(response);
+
+                    var weatherIcon = response.weather[0].icon
+
+                    city.text(response.name);
+                    icon.attr('src', 'http://openweathermap.org/img/wn/' + weatherIcon + '@2x.png');
+
+                    temp.text(response.main.temp + " °F");
+                    humidity.text(response.main.humidity + "%");
+                    windSpeed.text(response.wind.speed + " MPH");
+
+                    var cityLat = response.coord.lat;
+                    var cityLon = response.coord.lon;
+
+                    var queryURL = 'https://api.openweathermap.org/data/2.5/uvi?lat=' + cityLat + "&lon=" + cityLon + '&appid=e779588a0591b7492fc753e8f6d82879';
+                    console.log(queryURL);
+
+                    $.ajax({
+                        url: queryURL,
+                        method: "GET"
+                    })
+                        .then(function(response) {
+                            console.log(response);
+
+                            uvIndex.text(response.value);
+
+                            if (response.value < 2) {
+                                uvIndex.attr('class', 'bg-success');
+                            } else if (response.value > 3 && response.value < 5) {
+                                uvIndex.attr('class', 'bg-warning');
+                            } else if (response.value > 5) {
+                                uvIndex.attr('class', 'bg-danger');
+                            }
+                        });
+                });
+
+
+
+            var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityNoSpace + '&units=imperial&appid=e779588a0591b7492fc753e8f6d82879';
+
+            console.log(queryURL)
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+
+                .then(function(response) {
+                    console.log(response);
+
+                    var weatherIcon
+                });
+        
+
+            printSearchHistory();
+        });
+
+        function printSearchHistory() {
+            searchHistory.innerHTML = '';
+            var storedCity
+        }
+        // e779588a0591b7492fc753e8f6d82879
     </script>
 </body>
 </html>

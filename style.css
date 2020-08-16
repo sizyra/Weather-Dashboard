@@ -1,0 +1,18 @@
+#weather-icon {
+    width: fit-content;
+}
+
+
+
+@media (max-width: 768px) {
+    .col {
+        padding-top: 200px;
+        width:100%;
+    }
+
+    .col-4 {
+        padding-top: 0px;
+        padding-right: 50px;
+        widows: 100%;
+    }
+}

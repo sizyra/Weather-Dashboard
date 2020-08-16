@@ -8,3 +8,10 @@ Searching for a new city will likewise add that city to the search history and d
 # Progress:
 Work Day 1:
     Created basic formatting of HTML and CSS styles.
+
+Work Day 2:
+    jQuery for searching for a city (in the USA), displaying its current weather (temperature, humidity, wind speed, and UV index) as well as a matching weather icon established. 
+
+    To-do:
+        Store searched cities locally
+        Display searched city's 5-day forecast (starting day after initial search)
