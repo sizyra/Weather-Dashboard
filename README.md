@@ -17,4 +17,6 @@ Work Day 2:
         Display searched city's 5-day forecast (starting day after initial search)
 
 Work Day 3:
-    
+    jQuery for creating a 5-day forecast established. 
+
+    Still need to sort out localStorage of searched cities.
