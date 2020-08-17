@@ -90,18 +90,42 @@ $('form').on("submit", function(event) {
 
 
 
-    var queryURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityNoSpace + '&units=imperial&appid=e779588a0591b7492fc753e8f6d82879';
+    var queryURL2 = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityNoSpace + '&units=imperial&appid=e779588a0591b7492fc753e8f6d82879';
 
-    console.log(queryURL)
+    console.log(queryURL2)
 
     $.ajax({
-        url: queryURL,
+        url: queryURL2,
         method: "GET"
     })
         .then(function(response) {
             console.log(response);
 
-            var weatherIcon
+            // Found how to convert UNIX time to US date format at https://coderrocketfuel.com/article/convert-a-unix-timestamp-to-a-date-in-vanilla-javascript
+            // The forecast for 'tomorrow'
+            var fiveDateOneUnix = response.list[1].dt;
+            var fiveDateOneMil = fiveDateOneUnix * 1000;
+            var fiveDateOneObj = new Date(fiveDateOneMil);
+            var fiveDateOneDate = fiveDateOneObj.toLocaleDateString('en-US', {timeZoneName: 'short'});
+            fiveDateOne.text(fiveDateOneDate);
+
+            var weatherIconFirst = response.list[1].weather[0].icon;
+            weatherIconOne.attr('src', 'http://openweathermap.org/img/wn/' + weatherIconFirst + '@2x.png')
+            fiveTempOne.text(response.list[1].main.temp + " °F");
+            fiveHumOne.text(response.list[1].main.humidity + "%");
+
+            //The forecast in two days
+            var fiveDateTwoUnix = response.list[2].dt;
+            var fiveDateTwoMil = fiveDateTwoUnix * 1000;
+            var fiveDateTwoObj = new Date(fiveDateTwoMil);
+            var fiveDateTwoDate = fiveDateTwoObj.toLocaleDateString('en-US', {timeZoneName: 'short'});
+            fiveDateTwo.text(fiveDateTwoDate);
+
+            var weatherIconSecond = response.list[2].weather[0].icon;
+            weatherIconTwo.attr('src', 'http://openweathermap.org/img/wn/' + weatherIconSecond + '@2x.png')
+            fiveTempTwo.text(response.list[2].main.temp + " °F");
+            fiveHumTwo.text(response.list[2].main.humidity + "%");
+            
         });
         
 

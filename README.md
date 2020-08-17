@@ -15,3 +15,6 @@ Work Day 2:
     To-do:
         Store searched cities locally
         Display searched city's 5-day forecast (starting day after initial search)
+
+Work Day 3:
+    
