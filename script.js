@@ -39,7 +39,11 @@ var fiveHumFive = $('#5-day-humidity-5');
 
 $('form').on("submit", function(event) {
     event.preventDefault();
+    weatherSearch();
+});
 
+
+function weatherSearch() {
     var citySearchVal = citySearched.val();
     var cityNoSpace = citySearchVal.replace(/ /g, '');
 
@@ -50,7 +54,6 @@ $('form').on("submit", function(event) {
         url: queryURL,
         method: "GET"
     })
-    
         .then(function(response) {
             console.log(response);
 
@@ -169,26 +172,31 @@ $('form').on("submit", function(event) {
             fiveHumFive.text('Humidity: ' + response.list[33].main.humidity + "%");
         });
     
-        var storedCity = JSON.parse(localStorage.getItem('searchedCity'));
-        if (storedCity == null) {
-            storedCity = [];
-        }
-        storedCity.push({
-            citySearchVal
-        })
+    var storedCity = JSON.parse(localStorage.getItem('searchedCity'));
+    if (storedCity == null) {
+        storedCity = [];
+    }
+    storedCity.push({
+        cities:citySearchVal
+    })
     
     localStorage.setItem('searchedCity', JSON.stringify(storedCity));
         
     printSearchHistory();
-});
+}
+
 
 function printSearchHistory() {
     searchHistory.innerHTML = '';
     var storedCity = JSON.parse(localStorage.getItem('searchedCity'));
     if (storedCity.length > 0) {
         for (var i = 0; i < storedCity.length; i++){
-            var entry = document.createElement('li')
-            entry.text(storedScore[i]);
+            var entry = document.createElement('button')
+            entry.textContent = storedCity[i].cities;
+            entry.on('click', function(event) {
+                event.preventDefault();
+                
+            });
             searchHistory.append(entry);
         }
     }

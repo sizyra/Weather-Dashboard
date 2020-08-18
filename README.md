@@ -20,3 +20,13 @@ Work Day 3:
     jQuery for creating a 5-day forecast established. 
 
     Still need to sort out localStorage of searched cities.
+
+Work Day 4:
+    P 1:
+        Now storing cities locally.
+
+        Unforseen error when printing local storage - entirety of local storage printed after every search. 
+
+        Still need to attach functionality to allow clicking on searched cities to pull up city's weather data.
+    
+    
