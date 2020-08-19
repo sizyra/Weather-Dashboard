@@ -35,17 +35,39 @@ var weatherIconFive = $('#weather-icon-5');
 var fiveTempFive = $('#5-day-temp-5');
 var fiveHumFive = $('#5-day-humidity-5');
 
+var storedCity = JSON.parse(window.localStorage.getItem('storedCity'));
 
+// If there is no search history, nothing happens. If there is a search history, the most recent city search's results will load on refresh/load
+if (storedCity == null) {
+    storedCity = [];
+} 
+
+printSearchHistory();
 
 $('form').on("submit", function(event) {
     event.preventDefault();
     weatherSearch();
 });
 
+if (storedCity.length > 0) {
+    citySearched.val(storedCity[0])
+    weatherSearch();
+}
 
 function weatherSearch() {
     var citySearchVal = citySearched.val();
     var cityNoSpace = citySearchVal.replace(/ /g, '');
+
+    var cityIndex = storedCity.indexOf(citySearchVal)
+
+    if (cityIndex === -1) {
+        storedCity.push(citySearchVal);
+    } else {
+        storedCity.splice(cityIndex, 1);
+        storedCity.push(citySearchVal);
+    }
+
+    window.localStorage.setItem('storedCity',JSON.stringify(storedCity));
 
     var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityNoSpace + '&units=imperial&appid=e779588a0591b7492fc753e8f6d82879';
 
@@ -110,7 +132,16 @@ function weatherSearch() {
     })
         .then(function(response) {
             console.log(response);
+            var numb = 1;
 
+            for (var i = 0; i < response.list.length; i++) {
+                if (response.list[i].dt_txt.indexOf('15:00:00') >= 0) {
+                    $('#5-day-date-' + numb).text(new Date(response.list[i].dt_txt).toLocaleDateString('en-US', {timeZoneName: 'short'}));
+                    $('#5-day-')
+
+                    numb++;
+                }
+            }
             // The forecast for 'tomorrow'
             var fiveDateOneUnix = response.list[7].dt;
             var fiveDateOneMil = fiveDateOneUnix * 1000;
@@ -171,33 +202,27 @@ function weatherSearch() {
             fiveTempFive.text('Temperature: ' + response.list[39].main.temp_max + " °F");
             fiveHumFive.text('Humidity: ' + response.list[33].main.humidity + "%");
         });
-    
-    var storedCity = JSON.parse(localStorage.getItem('searchedCity'));
-    if (storedCity == null) {
-        storedCity = [];
-    }
-    storedCity.push({
-        cities:citySearchVal
-    })
-    
-    localStorage.setItem('searchedCity', JSON.stringify(storedCity));
         
     printSearchHistory();
 }
 
 
 function printSearchHistory() {
-    searchHistory.innerHTML = '';
-    var storedCity = JSON.parse(localStorage.getItem('searchedCity'));
+    searchHistory.empty();
     if (storedCity.length > 0) {
         for (var i = 0; i < storedCity.length; i++){
-            var entry = document.createElement('button')
-            entry.textContent = storedCity[i].cities;
+            var entry = $('<button>');
+            entry.data('city', storedCity[i]);
+            entry.text(storedCity[i]);
             entry.on('click', function(event) {
                 event.preventDefault();
                 
+                citySearched.val($(this).data('city'));
+
+                weatherSearch();
+                console.log(event);
             });
-            searchHistory.append(entry);
+            searchHistory.prepend(entry);
         }
     }
 }
