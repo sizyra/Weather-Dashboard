@@ -39,3 +39,6 @@ Work Day 4:
     
     P 2:
         Storing cities properly. Clicking searched city re-searches that information. Last search remains on refresh.
+
+WORK DAY 5:
+    When I saw that I'd forgotten about the time difference, I rushed a final commit and submitted my homework. Earlier today I discovered that I'd left several things undone and forgotten to remove excess code. I've fixed it now - it may be late, but at least now it's complete.
