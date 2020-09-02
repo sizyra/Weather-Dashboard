@@ -102,7 +102,7 @@ function weatherSearch() {
             for (var i = 0; i < response.list.length; i++) {
                 if (response.list[i].dt_txt.indexOf('21:00:00') >= 0) {
                     $('#5-day-date-' + numb).text(new Date(response.list[i].dt_txt).toLocaleDateString('en-US', {timeZoneName: 'short'}));
-                    $('#5-day-weather-icon-' + numb).attr('src', 'https://openweathermap.org/img/wn/' + response.list[i].weather[0].icon + '@2x.png');
+                    $('#weather-icon-' + numb).attr('src', 'https://openweathermap.org/img/wn/' + response.list[i].weather[0].icon + '@2x.png');
                     $('#5-day-temp-' + numb).text('Temperature: ' + response.list[i].main.temp_max + " °F");
                     $('#5-day-humidity' + numb).text('Humidity: ' + response.list[i].main.humidity + "%");
 
