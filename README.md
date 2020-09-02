@@ -23,6 +23,7 @@ Image at:
 - JavaScript
 - jQuery
 - CSS
+- Bootstrap
 - .ajax
 
 # License:
