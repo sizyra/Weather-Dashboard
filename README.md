@@ -13,6 +13,10 @@ Image at:
 
 ![Homework-6-Weather-Dashboard](/finished-product.png)
 
+Image at:
+
+![Weather-Dashboard](/finished-product-2.png)
+
 # Progress:
 Work Day 1:
     Created basic formatting of HTML and CSS styles.
