@@ -11,7 +11,7 @@ https://sizyra.github.io/Homework-6-Weather-Dashboard/
 # Final Product:
 Image at:
 
-![Homework-6-Weather-Dashboard](final-product.png)
+![Homework-6-Weather-Dashboard](/final-product.png)
 
 # Progress:
 Work Day 1:
