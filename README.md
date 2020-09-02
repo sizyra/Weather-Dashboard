@@ -6,7 +6,7 @@ The user may search for a city in the search bar. On pressing 'enter,' the city 
 Searching for a new city will likewise add that city to the search history and display that city's weather information. Clicking on a city name in the search history will recall that city's weather information.
 
 # Link:
-https://sizyra.github.io/Homework-6-Weather-Dashboard/
+https://sizyra.github.io/Weather-Dashboard/
 
 # Final Product:
 Image at:
